@@ -21,12 +21,47 @@ Linux
 mkdir build && cd build && cmake .. && make
 ```
 
+Docker
+======
+
+Build
+-----
+
+```bash
+docker build -t blur-background --target build .
+```
+
+Test
+-----
+
+```bash
+docker build -t blur-background --target test .
+```
+
+Export binary app from container
+--------------------------------
+
+```bash
+DOCKER_BUILDKIT=1 docker build -t blur-background-app --target app-export --output type=local,dest=out .
+```
+
+
 Dependency
 ==========
-  * gcc
-  * Valgrind
-  * OpenCV
+  * catch2
+  * clang
+  * cmake
   * fmt
+  * gcc
+  * glew
+  * hdf5
+  * make
+  * opencv
+  * openmpi
+  * qt5-base
+  * spdlog
+  * valgrind
+  * vtk
 
 Tests
 =====
