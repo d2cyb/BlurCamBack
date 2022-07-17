@@ -13,7 +13,7 @@ TEST_CASE("throw error on undefined video device descriptor", "[BlurVideo]") {
 
   SECTION("blurBackground") {
     REQUIRE_THROWS_WITH(
-      bv.blurBackground(-1),
+      bv.blurBackground(INT_MAX),
       "Couldn't open video capture"
     );
   }

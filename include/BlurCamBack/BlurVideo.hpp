@@ -9,6 +9,7 @@
 #include <opencv4/opencv2/imgproc.hpp>
 #include <opencv4/opencv2/objdetect.hpp>
 #include <opencv4/opencv2/videoio.hpp>
+#include <stdexcept>
 #include <vector>
 
 namespace blur_cam_back {
@@ -18,6 +19,7 @@ class BlurVideo {
   static const int frameSeconds{33};
   const std::string _windowName;
   const std::filesystem::path _classifierFilePath;
+  const cv::Size blurKernelSize{101, 101};
 
  public:
   explicit BlurVideo(std::string&& windowName = "BlurVideo",

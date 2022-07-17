@@ -1,7 +1,5 @@
 #include "BlurCamBack/BlurVideo.hpp"
 
-#include <stdexcept>
-
 namespace blur_cam_back {
 
 auto BlurVideo::blurBackground(int videoDeviceDescriptor) -> void {
@@ -36,16 +34,15 @@ auto BlurVideo::blurBackground(int videoDeviceDescriptor) -> void {
 auto BlurVideo::blurFrameBackground(cv::CascadeClassifier &cascade, cv::Mat &&inputImg) -> cv::Mat {
   std::vector<cv::Rect> faces{};
   cascade.detectMultiScale(inputImg, faces);
-  cv::Size windowSize{101, 101};
 
-  cv::Mat blur{inputImg.size(), inputImg.type()};
-  cv::Mat roiColor;
+  cv::Mat blurImg{inputImg.size(), inputImg.type()};
+  cv::GaussianBlur(inputImg, blurImg, blurKernelSize, 0);
+
   for (const auto &rect : faces) {
-    cv::Rect roiRect = cv::Rect(rect.y, rect.y, rect.width, rect.height);
-    cv::GaussianBlur(inputImg(roiRect), inputImg(roiRect), windowSize, 0);
+    inputImg(rect).copyTo(blurImg(rect));
   }
 
-  return inputImg;
+  return blurImg;
 }
 
 }  // namespace blur_cam_back
