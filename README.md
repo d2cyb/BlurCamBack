@@ -46,23 +46,6 @@ DOCKER_BUILDKIT=1 docker build -t blur-background-app --target app-export --outp
 ```
 
 
-Dependency
-==========
-  * catch2
-  * clang
-  * cmake
-  * fmt
-  * gcc
-  * glew
-  * hdf5
-  * make
-  * opencv
-  * openmpi
-  * qt5-base
-  * spdlog
-  * valgrind
-  * vtk
-
 Tests
 =====
 
